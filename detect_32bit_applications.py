@@ -3,6 +3,7 @@
 
 import plistlib
 import subprocess
+import platform
 
 def formatApplicationForConsole(application):
     path = application["path"]
@@ -12,12 +13,14 @@ def formatApplicationForConsole(application):
     else:
     	return path
 
+result = ""
+# Confirmation is made because it affects macOS Catalina (10.15) and below.
+if int(platform.mac_ver()[0].split(".")[1]) < 15:
+    sp_applications_data_type_xml = subprocess.check_output(["/usr/sbin/system_profiler",  "SPApplicationsDataType", "-xml"])
+    sp_applications_data_type = plistlib.readPlistFromString(sp_applications_data_type_xml)
 
-sp_applications_data_type_xml = subprocess.check_output(["/usr/sbin/system_profiler",  "SPApplicationsDataType", "-xml"])
-sp_applications_data_type = plistlib.readPlistFromString(sp_applications_data_type_xml)
+    all_applicatons = sp_applications_data_type[0]["_items"]
+    finded_32_bit_applications = [application for application in all_applicatons if application["has64BitIntelCode"] == "no"]
+    result = "\n".join(map(formatApplicationForConsole, finded_32_bit_applications))
 
-all_applicatons = sp_applications_data_type[0]["_items"]
-finded_32_bit_applications = [application for application in all_applicatons if application["has64BitIntelCode"] == "no"]
-formattedApplicaions = "\n".join(map(formatApplicationForConsole, finded_32_bit_applications))
-
-print("<result>%s</result>" % formattedApplicaions)
+print("<result>%s</result>" % result)
