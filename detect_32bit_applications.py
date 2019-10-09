@@ -37,8 +37,10 @@ if int(platform.mac_ver()[0].split(".")[1]) < 15:
     all_applicatons = sp_applications_data_type[0]["_items"]
     finded_32_bit_applications = [application for application in all_applicatons if application["has64BitIntelCode"] == "no"]
     if IGNORE_SYSTEM_APP:
-        finded_32_bit_applications = [application for application in finded_32_bit_applications if not re.match(r"^/System", application["path"])]
+        repatter = re.compile(r"^/System", re.IGNORECASE)
+        finded_32_bit_applications = [application for application in finded_32_bit_applications if not repatter.match(application["path"])]
 
     result = "\n".join(map(formatApplicationForConsole, finded_32_bit_applications))
 
+# Jamf Pro collects the results when sandwiched between <result>
 print("<result>%s</result>" % "None" if result == "" else result)
