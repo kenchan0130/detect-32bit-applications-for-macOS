@@ -41,4 +41,4 @@ if int(platform.mac_ver()[0].split(".")[1]) < 15:
 
     result = "\n".join(map(formatApplicationForConsole, finded_32_bit_applications))
 
-print("<result>%s</result>" % result)
+print("<result>%s</result>" % "None" if result == "" else result)
