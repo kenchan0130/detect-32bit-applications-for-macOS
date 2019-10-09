@@ -9,4 +9,4 @@ Therefore, listing 32bit applications is effective.
 2. Click "New" button
 3. Set any name to "DISPLAY NAME"
 4. Select "INVENTORY DISPLAY" to your liking
-5. Select "Script" to "INPUT TYPE" and set [this scirpt](https://github.com/kenchan0130/32bit-applications-jamf-script/blob/master/detect_32bit_applications.py)
+5. Select "Script" to "INPUT TYPE" and set [this scirpt](./detect_32bit_applications.py)
