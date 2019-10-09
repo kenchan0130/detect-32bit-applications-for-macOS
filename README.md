@@ -17,7 +17,7 @@ And if you want to include system apps, you should change `IGNORE_SYSTEM_APP` of
 IGNORE_SYSTEM_APP = False
 ```
 
-## Setup for Jamf Pro
+### Setup for Jamf Pro
 
 1. Access https://<JAMF_PRO_SERVER_HOST>/computerExtensionAttributes.html
 2. Click "New" button
