@@ -1,9 +1,9 @@
-# 32bit-applications-jamf-script
+# detect-32bit-applications-for-macOS
 
 32-bit applications will not work from macOS Catalina.
 Therefore, listing 32bit applications is effective.
 
-## Setup
+## Setup for Jamf Pro
 
 1. Access https://<JAMF_PRO_SERVER_HOST>>/computerExtensionAttributes.html
 2. Click "New" button
